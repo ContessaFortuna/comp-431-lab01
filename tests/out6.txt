@@ -1,0 +1,5 @@
+GET /files/hello.txt HTTP/1.0 
+Method = GET
+Request-URL = /files/hello.txt
+HTTP-Version = HTTP/1.0
+Hello from COMP 431

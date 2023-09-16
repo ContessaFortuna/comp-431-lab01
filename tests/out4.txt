@@ -1,0 +1,2 @@
+GET /index.html HTTP/a.0
+ERROR -- Invalid HTTP-Version token.
