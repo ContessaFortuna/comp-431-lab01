@@ -3,7 +3,6 @@ __author__ = 730434613
 import re
 import sys
 import os
-absolute_path = os.path.dirname(os.path.abspath(__file__))
 
 parse_errors = {
     -1: "ERROR -- Invalid Method token.",
@@ -44,20 +43,21 @@ def verify_tokens(split_command):
     # On successful match of components
     return 1
 
-def read_file(file_path):
+def read_file(pathname):
     extension_regex = re.compile(r".*(\.txt|\.htm|\.html)$")
-    if(extension_regex.fullmatch(file_path)==None):
+    if(extension_regex.fullmatch(pathname)==None):
         # 501 Not Implemented
-        return "501 Not Implemented: "+file_path
-    if(not os.path.isdir(file_path)):
+        return "501 Not Implemented: "+pathname
+    fullpath = os.path.abspath(pathname)
+    #if(not os.path.isdir(fullpath)):
        # 404 Not Found
-       return "404 Not Found: "+file_path
+       #return "404 Not Found: "+pathname
     try:
-        file = open(file_path,"r")
+        file = open(fullpath,"r")
         return file.read()
     except IOError as e:
         # ERROR: <IOError message>
-        return "ERROR: "+e
+        return "ERROR: "+str(e)
         
 
 def parse_request(input_command):
@@ -70,7 +70,7 @@ def parse_request(input_command):
     sys.stdout.write("Method = "+spl_command["method"]+"\n")
     sys.stdout.write("Request-URL = "+spl_command["request_url"]+"\n")
     sys.stdout.write("HTTP-Version = "+spl_command["version_identifier"]+"\n")
-    sys.stdout.write(read_file(os.path.join(absolute_path, spl_command["request_url"]))+"\n")
+    sys.stdout.write(read_file(spl_command["request_url"])+"\n")
 
 for line in sys.stdin:
     if(len(line)>1):
