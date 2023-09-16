@@ -49,9 +49,9 @@ def read_file(pathname):
         # 501 Not Implemented
         return "501 Not Implemented: "+pathname
     fullpath = os.path.abspath(pathname)
-    #if(not os.path.isdir(fullpath)):
+    if(not os.path.isdir(fullpath)):
        # 404 Not Found
-       #return "404 Not Found: "+pathname
+       return "404 Not Found: "+pathname
     try:
         file = open(fullpath,"r")
         return file.read()
@@ -61,7 +61,7 @@ def read_file(pathname):
         
 
 def parse_request(input_command):
-    sys.stdout.write(input_command+"\n")
+    sys.stdout.write(input_command)
     spl_command = split_tokens(input_command)
     chk_verify = verify_tokens(spl_command)
     if(chk_verify in range(-4,0)):
