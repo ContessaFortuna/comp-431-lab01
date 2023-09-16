@@ -14,6 +14,8 @@ parse_errors = {
 
 def split_tokens(input_command):
     split_command = input_command.split()
+    while(len(split_command)<3):
+        split_command+="notoken"
     thesplit = {
         "method": split_command[0],
         "request_url": split_command[1],
@@ -59,16 +61,16 @@ def read_file(file_path):
         
 
 def parse_request(input_command):
-    print(input_command)
+    sys.stdout.write(input_command+"\n")
     spl_command = split_tokens(input_command)
     chk_verify = verify_tokens(spl_command)
     if(chk_verify<0):
-        print(parse_errors[chk_verify])
+        sys.stdout.write(parse_errors[chk_verify]+"\n")
         return -1
-    print("Method = "+spl_command["method"])
-    print("Request-URL = "+spl_command["request_url"])
-    print("HTTP-Version = "+spl_command["version_identifier"])
-    print(read_file(os.path.join(absolute_path, spl_command["request_url"])))
+    sys.stdout.write("Method = "+spl_command["method"]+"\n")
+    sys.stdout.write("Request-URL = "+spl_command["request_url"]+"\n")
+    sys.stdout.write("HTTP-Version = "+spl_command["version_identifier"]+"\n")
+    sys.stdout.write(read_file(os.path.join(absolute_path, spl_command["request_url"]))+"\n")
 
 for line in sys.stdin:
     if(len(line)>1):
