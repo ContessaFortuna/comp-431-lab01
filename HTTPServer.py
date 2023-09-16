@@ -45,7 +45,7 @@ def verify_tokens(split_command):
 
 def read_file(pathname):
     extension_regex = re.compile(r".*(\.txt|\.htm|\.html)$")
-    if(extension_regex.fullmatch(pathname)==None):
+    if(extension_regex.fullmatch(pathname.lower())==None):
         # 501 Not Implemented
         return "501 Not Implemented: "+pathname+"\n"
     fullpath = os.getcwd()+pathname
