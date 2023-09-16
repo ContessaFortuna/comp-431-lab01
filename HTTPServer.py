@@ -47,17 +47,17 @@ def read_file(pathname):
     extension_regex = re.compile(r".*(\.txt|\.htm|\.html)$")
     if(extension_regex.fullmatch(pathname)==None):
         # 501 Not Implemented
-        return "501 Not Implemented: "+pathname
+        return "501 Not Implemented: "+pathname+"\n"
     fullpath = os.getcwd()+pathname
     if(not os.path.isfile(fullpath)):
        # 404 Not Found
-       return "404 Not Found: "+pathname
+       return "404 Not Found: "+pathname+"\n"
     try:
         file = open(fullpath,"r")
         return file.read()
     except IOError as e:
         # ERROR: <IOError message>
-        return "ERROR: "+str(e)
+        return "ERROR: "+str(e)+"\n"
         
 
 def parse_request(input_command):
