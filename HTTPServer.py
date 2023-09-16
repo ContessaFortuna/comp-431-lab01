@@ -64,7 +64,7 @@ def parse_request(input_command):
     sys.stdout.write(input_command+"\n")
     spl_command = split_tokens(input_command)
     chk_verify = verify_tokens(spl_command)
-    if(chk_verify<0):
+    if(chk_verify in range(-4,0)):
         sys.stdout.write(parse_errors[chk_verify]+"\n")
         return -1
     sys.stdout.write("Method = "+spl_command["method"]+"\n")
