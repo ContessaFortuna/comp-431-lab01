@@ -70,7 +70,7 @@ def parse_request(input_command):
     sys.stdout.write("Method = "+spl_command["method"]+"\n")
     sys.stdout.write("Request-URL = "+spl_command["request_url"]+"\n")
     sys.stdout.write("HTTP-Version = "+spl_command["version_identifier"]+"\n")
-    sys.stdout.write(read_file(spl_command["request_url"])+"\n")
+    sys.stdout.write(read_file(spl_command["request_url"]))
 
 for line in sys.stdin:
     if(len(line)>1):
