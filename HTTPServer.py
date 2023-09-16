@@ -48,10 +48,8 @@ def read_file(pathname):
     if(extension_regex.fullmatch(pathname)==None):
         # 501 Not Implemented
         return "501 Not Implemented: "+pathname
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    fullpath = os.path.join(script_dir, pathname)
-    print(fullpath)
-    if(not os.path.isdir(fullpath)):
+    fullpath = os.getcwd()+pathname
+    if(not os.path.isfile(fullpath)):
        # 404 Not Found
        return "404 Not Found: "+pathname
     try:
