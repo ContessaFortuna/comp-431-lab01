@@ -43,11 +43,11 @@ def verify_tokens(split_command):
     return 1
 
 def read_file(file_path):
-    extension_regex = re.compile(r"(\.txt|\.htm|\.html)$")
-    if(extension_regex.match(file_path)==None):
+    extension_regex = re.compile(r".*(\.txt|\.htm|\.html)$")
+    if(extension_regex.fullmatch(file_path)==None):
         # 501 Not Implemented
         return "501 Not Implemented: "+file_path
-    if(not os.path.is_dir(file_path)):
+    if(not os.path.isdir(file_path)):
        # 404 Not Found
        return "404 Not Found: "+file_path
     try:
@@ -68,7 +68,7 @@ def parse_request(input_command):
     print("Method = "+spl_command["method"])
     print("Request-URL = "+spl_command["request_url"])
     print("HTTP-Version = "+spl_command["version_identifier"])
-    print(read_file(os.path.join(absolute_path,spl_command["request_url"])))
+    print(read_file(os.path.join(absolute_path, spl_command["request_url"])))
 
 for line in sys.stdin:
     if(len(line)>1):
