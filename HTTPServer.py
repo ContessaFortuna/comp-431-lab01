@@ -48,7 +48,7 @@ def read_file(pathname):
     if(extension_regex.fullmatch(pathname)==None):
         # 501 Not Implemented
         return "501 Not Implemented: "+pathname
-    fullpath = os.path.realpath(os.path.join(os.getcwd(), pathname))
+    fullpath = os.path.join(os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))), pathname)
     if(not os.path.isdir(fullpath)):
        # 404 Not Found
        return "404 Not Found: "+pathname
